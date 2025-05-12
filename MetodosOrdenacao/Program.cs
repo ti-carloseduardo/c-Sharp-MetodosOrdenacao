@@ -76,14 +76,60 @@ namespace MetodosOrdenacao
                                 QuickSort quick = new QuickSort(vetorTeste);
                                 quick.Ordenar();    
                             Console.WriteLine("Quick Sort Concluido");
-                                break;
-                            }
+                            break;
+
+                            case TipoOrdenacaoEnum.AllSorts:
+
+                            stopwatch.Start();
+                            QuickSort quickSort = new QuickSort(vetorTeste);
+                            quickSort.Ordenar();
+                            stopwatch.Stop();
+                            Console.WriteLine("Quick Sort Concluido");
+                            Console.WriteLine($"Tempo de execução: {stopwatch.Elapsed.TotalSeconds} segundos\n");
+                            stopwatch.Reset();
+
+                            stopwatch.Start();
+                            MergeSort mergeSort = new MergeSort(vetorTeste);
+                            mergeSort.Ordenar();
+                            stopwatch.Stop();
+                            Console.WriteLine("Merge Sort Concluido");
+                            Console.WriteLine($"Tempo de execução: {stopwatch.Elapsed.TotalSeconds} segundos\n");
+                            stopwatch.Reset();
+
+                            stopwatch.Start();
+                            InsertionSort insertionSort = new InsertionSort(vetorTeste);
+                            insertionSort.Ordenar();
+                            stopwatch.Stop();                                
+                            Console.WriteLine("Insertion Sort Concluido");
+                            Console.WriteLine($"Tempo de execução: {stopwatch.Elapsed.TotalSeconds} segundos\n");
+                            stopwatch.Reset();
+
+                            stopwatch.Start();  
+                            SelectionSort selectionSort = new SelectionSort(vetorTeste);
+                            selectionSort.Ordenar();
+                            stopwatch.Stop();
+                            Console.WriteLine("Selection Sort Concluido");
+                            Console.WriteLine($"Tempo de execução: {stopwatch.Elapsed.TotalSeconds} segundos\n");
+                            stopwatch.Reset();
+
+                            stopwatch.Start();
+                            BubbleSort bubbleSort = new BubbleSort(vetorTeste);
+                            bubbleSort.Ordenar();
+                            stopwatch.Stop();
+                            Console.WriteLine("Bubble Sort Concluido");
+                            Console.WriteLine($"Tempo de execução: {stopwatch.Elapsed.TotalSeconds} segundos\n");
+                            stopwatch.Reset();
+
+
+                            break;
+                        }
 
                         stopwatch.Stop();
-                        Console.WriteLine($"\nTempo de execução: {stopwatch.Elapsed.TotalSeconds} segundos");
-                        }
-                    // Verifica se a opção pertence ao TipoOperacaoEnum
-                    else if (Enum.IsDefined(typeof(TipoOperacaoEnum), opcao))
+                        Console.WriteLine($"\nTempo de execução Geral: {stopwatch.Elapsed.TotalSeconds} segundos");
+                    //ajustar nova instancia para usar stowhatch para metodos individuais. 
+                    }
+                // Verifica se a opção pertence ao TipoOperacaoEnum
+                else if (Enum.IsDefined(typeof(TipoOperacaoEnum), opcao))
                         {
                         TipoOperacaoEnum tipoOperacao = (TipoOperacaoEnum)opcao;
 
