@@ -2,8 +2,8 @@
     {
     enum TipoOperacaoEnum : int
         {
-        ImprimirVetor = 6,
-        GerarNovoVetor = 7,
-        Sair = 8
+        ImprimirVetor = 7,
+        GerarNovoVetor = 8,
+        Sair = 9
         }
     }

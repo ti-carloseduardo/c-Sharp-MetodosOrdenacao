@@ -30,6 +30,7 @@ namespace MetodosOrdenacao.Menu
             Console.WriteLine(CentralizeText($"{(int)TipoOrdenacaoEnum.InsertionSort}. {TipoOrdenacaoEnum.InsertionSort} (Ordenação por Inserção)"));
             Console.WriteLine(CentralizeText($"{(int)TipoOrdenacaoEnum.MergeSort}. {TipoOrdenacaoEnum.MergeSort} (Ordenação por Intercalação)"));
             Console.WriteLine(CentralizeText($"{(int)TipoOrdenacaoEnum.QuickSort}. {TipoOrdenacaoEnum.QuickSort} (Ordenação Rápida)"));
+            Console.WriteLine(CentralizeText($"{(int)TipoOrdenacaoEnum.AllSorts}. {TipoOrdenacaoEnum.AllSorts} (Todos Metodos Ordenação)"));
             Console.WriteLine(CentralizeText($"{(int)TipoOperacaoEnum.ImprimirVetor}. Imprimir Vetor de testes"));
             Console.WriteLine(CentralizeText($"{(int)TipoOperacaoEnum.GerarNovoVetor}. Gerar um novo Vetor para testes"));
             Console.WriteLine(CentralizeText($"{(int)TipoOperacaoEnum.Sair}. Sair"));
@@ -43,9 +44,10 @@ namespace MetodosOrdenacao.Menu
                 }
             else
                 {
-                Console.WriteLine("Entrada inválida! Por favor, digite um número.");
+                Console.WriteLine("Entrada inválida! Por favor, digite um número inteiro positivo.");
                 return ExibirMenuPrincipal(); // Chama o menu novamente
                 }
+            
             }
         }
     }

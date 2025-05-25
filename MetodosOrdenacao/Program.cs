@@ -20,16 +20,21 @@ namespace MetodosOrdenacao
             {
             MenuOrdenacao menu = new MenuOrdenacao(); // Instancia o menu
 
-            Stopwatch stopwatch = new Stopwatch(); // Instancia o cronômetro
+            Stopwatch stopwatch = new Stopwatch(); // Instancia o cronômetro por metodo.
+            Stopwatch stopwatchGeral = new Stopwatch(); // Instancia o cronômetro geral.
             RandomizadorVetor randomizar = new RandomizadorVetor();// delclarado aqui para ser acessado nos if e cases.
-                                                                   // acesso global.responsavel por randomizar o vetor
-                                                                   // variaveis private e vetor passado por copia. 
-                                                                   //  int[] vetorRandomizado = randomizar.ObterCopiaVetorRandomizado();//pegar copia vetor randomizado
-                                                                   //private static int[] vetorRandomizado; // Tornando-a acessível globalmente
-                                                                   //ordenacoes(menu e chamada classes e metodos)
-                                                                   //uso do enum no controle menu organizacao e facilidade manutencao
-                                                                   //TipoOrdenacaoEnum tipoOrdenacao;
-                                                                   //TipoOperacaoEnum tipoOperacao;
+            //antes de chamar o menu ja gero um vetor para os testes. 
+            Console.WriteLine("Gerando novo vetor...");
+            randomizar.LerTamanhoVetor();
+            randomizar.Randomize();
+            Console.WriteLine("Novo vetor gerado com sucesso!");
+            // acesso global.responsavel por randomizar o vetor
+            // variaveis private e vetor passado por copia. 
+            //  int[] vetorRandomizado = randomizar.ObterCopiaVetorRandomizado();//pegar copia vetor randomizado
+            //private static int[] vetorRandomizado; // Tornando-a acessível globalmente
+            //ordenacoes(menu e chamada classes e metodos)
+            //uso do enum no controle menu organizacao e facilidade manutencao
+            //TipoOrdenacaoEnum tipoOrdenacao; //TipoOperacaoEnum tipoOperacao;
 
 
             while (true)
@@ -78,8 +83,9 @@ namespace MetodosOrdenacao
                             Console.WriteLine("Quick Sort Concluido");
                             break;
 
-                            case TipoOrdenacaoEnum.AllSorts:
+                            case TipoOrdenacaoEnum.AllSorts://todos os algoritmos de ordenação
 
+                            stopwatchGeral.Start(); // Inicia o cronômetro geral
                             stopwatch.Start();
                             QuickSort quickSort = new QuickSort(vetorTeste);
                             quickSort.Ordenar();
@@ -119,13 +125,12 @@ namespace MetodosOrdenacao
                             Console.WriteLine("Bubble Sort Concluido");
                             Console.WriteLine($"Tempo de execução: {stopwatch.Elapsed.TotalSeconds} segundos\n");
                             stopwatch.Reset();
-
-
+                                                        
                             break;
                         }
 
-                        stopwatch.Stop();
-                        Console.WriteLine($"\nTempo de execução Geral: {stopwatch.Elapsed.TotalSeconds} segundos");
+                        stopwatchGeral.Stop();
+                        Console.WriteLine($"\nTempo de execução Geral: {stopwatchGeral.Elapsed.TotalSeconds} segundos");
                     //ajustar nova instancia para usar stowhatch para metodos individuais. 
                     }
                 // Verifica se a opção pertence ao TipoOperacaoEnum
