@@ -3,7 +3,8 @@
     enum TipoOperacaoEnum : int
         {
         ImprimirVetor = 7,
-        GerarNovoVetor = 8,
-        Sair = 9
+        GravarVetorRandomizado = 8,
+        GerarNovoVetor = 9,
+        Sair = 10
         }
     }

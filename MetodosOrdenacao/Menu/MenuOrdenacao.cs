@@ -32,6 +32,7 @@ namespace MetodosOrdenacao.Menu
             Console.WriteLine(CentralizeText($"{(int)TipoOrdenacaoEnum.QuickSort}. {TipoOrdenacaoEnum.QuickSort} (Ordenação Rápida)"));
             Console.WriteLine(CentralizeText($"{(int)TipoOrdenacaoEnum.AllSorts}. {TipoOrdenacaoEnum.AllSorts} (Todos Metodos Ordenação)"));
             Console.WriteLine(CentralizeText($"{(int)TipoOperacaoEnum.ImprimirVetor}. Imprimir Vetor de testes"));
+            Console.WriteLine(CentralizeText($"{(int)TipoOperacaoEnum.GravarVetorRandomizado}. Gravar Vetor Randomizado em arquivo de texto"));
             Console.WriteLine(CentralizeText($"{(int)TipoOperacaoEnum.GerarNovoVetor}. Gerar um novo Vetor para testes"));
             Console.WriteLine(CentralizeText($"{(int)TipoOperacaoEnum.Sair}. Sair"));
             Console.Write("Escolha uma opção: ");

@@ -7,6 +7,7 @@ using MetodosOrdenacao.ExibirVetorOrdenado;
 using MetodosOrdenacao.ClassesOrdenacao.Enum;
 using MetodosOrdenacao.Randomizador;
 using MetodosOrdenacao.Menu;
+using MetodosOrdenacao.Arquivos;
 
 
 
@@ -22,12 +23,8 @@ namespace MetodosOrdenacao
 
             Stopwatch stopwatch = new Stopwatch(); // Instancia o cronômetro por metodo.
             Stopwatch stopwatchGeral = new Stopwatch(); // Instancia o cronômetro geral.
+            GravaArquivos gravaArquivo = new GravaArquivos(); // Instancia a classe de gravação de arquivos.
             RandomizadorVetor randomizar = new RandomizadorVetor();// delclarado aqui para ser acessado nos if e cases.
-            //antes de chamar o menu ja gero um vetor para os testes. 
-            Console.WriteLine("Gerando novo vetor...");
-            randomizar.LerTamanhoVetor();
-            randomizar.Randomize();
-            Console.WriteLine("Novo vetor gerado com sucesso!");
             // acesso global.responsavel por randomizar o vetor
             // variaveis private e vetor passado por copia. 
             //  int[] vetorRandomizado = randomizar.ObterCopiaVetorRandomizado();//pegar copia vetor randomizado
@@ -36,6 +33,12 @@ namespace MetodosOrdenacao
             //uso do enum no controle menu organizacao e facilidade manutencao
             //TipoOrdenacaoEnum tipoOrdenacao; //TipoOperacaoEnum tipoOperacao;
 
+            //antes de chamar o menu ja gero um vetor para os testes. 
+            Console.WriteLine("Gerando novo vetor...");
+            randomizar.LerTamanhoVetor();
+            randomizar.Randomize();
+            Console.WriteLine("Novo vetor gerado com sucesso!");
+            
 
             while (true)
                 {
@@ -48,6 +51,7 @@ namespace MetodosOrdenacao
                         int[] vetorTeste = randomizar.ObterCopiaVetorRandomizado();
 
                         Console.WriteLine($"Executando {tipoOrdenacao}...");
+                        
                         stopwatch.Restart();
 
                         // Chamando método de ordenação específico
@@ -142,14 +146,7 @@ namespace MetodosOrdenacao
                             {
                             case TipoOperacaoEnum.ImprimirVetor:
                                 Console.WriteLine("Imprimindo vetor de testes...");
-                                if (randomizar != null)
-                                    {
-                                    randomizar.ExibirVetor();
-                                    }
-                                else
-                                    {
-                                    Console.WriteLine("Nenhum vetor foi inicializado! Crie um vetor primeiro.");
-                                    }
+                                randomizar.ExibirVetor();
                                 break;
 
                         case TipoOperacaoEnum.GerarNovoVetor:
@@ -157,9 +154,32 @@ namespace MetodosOrdenacao
                                 randomizar.LerTamanhoVetor();
                                 randomizar.Randomize();
                                 Console.WriteLine("Novo vetor gerado com sucesso!");
-                                break;
+                            break;
 
-                            case TipoOperacaoEnum.Sair:
+
+                        case TipoOperacaoEnum.GravarVetorRandomizado:
+
+                            // Grava o vetor no arquivo
+                            gravaArquivo.GravarArquivo("VetorRandomizado.txt", randomizar.ObterCopiaVetorRandomizado());
+
+                            Console.WriteLine("Arquivo [vetor Randomizado] gravado com sucesso!");
+
+                            // Exibe o endereço completo do arquivo
+                            Console.WriteLine($"Endereço: {gravaArquivo.TargetPath}VetorOrdenado.txt");
+                            break;
+
+                       /* case TipoOperacaoEnum.GravaVetorOriginal:
+
+                            // Grava o vetor no arquivo
+                            gravaArquivo.GravarArquivo("VetorOriginalRandomizado.txt", randomizar.ObterCopiaVetorRandomizado());
+
+                            Console.WriteLine("Arquivo [vetor randomizado] gravado com sucesso!");
+
+                            // Exibe o endereço completo do arquivo
+                            Console.WriteLine($"Endereço: {gravaArquivo.TargetPath}VetorOriginalRandomizado.txt");
+                            break;
+                       */
+                        case TipoOperacaoEnum.Sair:
                                 Console.WriteLine("Saindo do programa opcao menu!...");
                                 return; // Sai do loop e encerra o programa
                             }
