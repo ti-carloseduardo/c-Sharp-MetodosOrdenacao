@@ -12,7 +12,7 @@ using MetodosOrdenacao.Menu;
 
 namespace MetodosOrdenacao
     {
-    internal class Program
+    internal class ProcessFile
 
         {
         //private static int[] vetorRandomizado; // Tornando-a acessível globalmente e perde independencia vetores

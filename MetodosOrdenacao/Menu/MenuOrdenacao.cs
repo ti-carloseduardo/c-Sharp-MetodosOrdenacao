@@ -36,18 +36,17 @@ namespace MetodosOrdenacao.Menu
             Console.WriteLine(CentralizeText($"{(int)TipoOperacaoEnum.Sair}. Sair"));
             Console.Write("Escolha uma opção: ");
 
-            string escolha = Console.ReadLine();
+            int opcao;  // decalarando a variável para armazenar a opção escolhida pelo usuário
+            do
+                {
+                string escolha = Console.ReadLine();
 
-            if (int.TryParse(escolha, out int opcao))
-                {
-                return opcao;
-                }
-            else
-                {
-                Console.WriteLine("Entrada inválida! Por favor, digite um número inteiro positivo.");
-                return ExibirMenuPrincipal(); // Chama o menu novamente
-                }
-            
+                if (!int.TryParse(escolha, out  opcao) || opcao <= 0)//verifica se a entrada é um número inteiro positivo
+                    {
+                    Console.WriteLine("Entrada inválida! Por favor, digite um número inteiro positivo.");
+                    }
+                } while (opcao <= 0);
+            return opcao; // Retorna a opção escolhida pelo usuário
             }
         }
     }
