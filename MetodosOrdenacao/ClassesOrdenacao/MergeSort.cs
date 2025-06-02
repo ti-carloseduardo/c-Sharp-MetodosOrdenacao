@@ -8,15 +8,21 @@ namespace MetodosOrdenacao.ClassesOrdenacao
 {
     internal class MergeSort
         {
-        public int[] VetorCopia { get; set; }
+        //public int[] VetorCopia { get; set; }
+        public int[] VetorOrdenadoMergeSort { get;set; }
+            
         public MergeSort() { }
         public MergeSort(int[] vetorCopia)
         {
-            VetorCopia = vetorCopia;
+            VetorOrdenadoMergeSort = vetorCopia;
         }
+        public int[] ObterVetorOrdenadoMergeSort()
+            {
+            return VetorOrdenadoMergeSort;
+            }
         public void Ordenar()
             {
-            MergeSortOrd(VetorCopia, 0, VetorCopia.Length - 1);
+            MergeSortOrd(VetorOrdenadoMergeSort, 0, VetorOrdenadoMergeSort.Length - 1);
             }
 
         private void MergeSortOrd(int[] array, int esquerda, int direita)

@@ -4,19 +4,19 @@ namespace MetodosOrdenacao.ClassesOrdenacao
 {
     internal class QuickSort
     {
-        public int[] VetorCopia { get; set; }
+        public int[] VetorOrdenadoQuickSort  { get; set; }
         public QuickSort() { }
         public QuickSort(int[] vetorCopia)
             {
-            VetorCopia = vetorCopia;
-            }       
+            VetorOrdenadoQuickSort = vetorCopia;
+            }
        public int[] ObterVetorOrdenadoQuickSort()
        {
-            return VetorCopia;
+            return VetorOrdenadoQuickSort;
        }
         public void Ordenar()
             {
-            QuickSortOrd(VetorCopia, 0, VetorCopia.Length - 1);
+            QuickSortOrd(VetorOrdenadoQuickSort, 0, VetorOrdenadoQuickSort.Length - 1);
             }
 
         private void QuickSortOrd(int[] array, int esquerda, int direita)

@@ -1,4 +1,5 @@
 ﻿using System;
+
 using System.Numerics;
 
 
@@ -7,63 +8,80 @@ namespace MetodosOrdenacao.Randomizador
     class RandomizadorVetor
         {
         private int[] vetorRandomizado;
-        private int minValue;
-        private int maxValue;
         private System.Random random;
+        public int MinValue { get; private set; }
+        public int MaxValue { get; private set; }
 
-        
-       
+        public RandomizadorVetor(int[] vetorRandomizado, Random random, int minValue, int maxValue)
+            {
+            this.vetorRandomizado = vetorRandomizado;
+            this.random = random;
+            MinValue = minValue;
+            MaxValue = maxValue;
+            }
+        public RandomizadorVetor()
+            {
+          
+            }
 
         public void LerTamanhoVetor()
             {
             while (true)
                 {
-                Console.ForegroundColor = ConsoleColor.Green; // Define a cor do texto para verde
-                Console.Write("Digite a quantidade de numeros aleatorios(tamanho vetor): ");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write("Digite a quantidade de números aleatórios (Tamanho vetor): ");
                 string entrada = Console.ReadLine();
 
-                Console.Write("\nDigite numero minValue sera usado no Random: ");
-                if (!int.TryParse(Console.ReadLine(), out this.minValue))
+                if (!int.TryParse(entrada, out int tamVetorInt) || tamVetorInt <= 0)
                     {
-                    Console.WriteLine("Entrada inválida. Por favor, digite um número inteiro.");
-                    return;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Entrada inválida. Por favor, digite um número inteiro positivo.");
+                    Console.ResetColor();
+                    continue;
                     }
 
+                random = new System.Random();
+                vetorRandomizado = new int[tamVetorInt];
 
-
-                Console.Write("\nDigite numero maxValue sera usando no Random : ");
-                if (!int.TryParse(Console.ReadLine(), out this.maxValue))
-                   {
-                    Console.WriteLine("Entrada inválida. Por favor, digite um número inteiro.");
-                    return;
-                    }
-                Console.ResetColor(); // Restaura a cor padrão do console
-
-
-                if (minValue > maxValue  )
+                while (true)
                     {
-                    Console.ForegroundColor = ConsoleColor.Red; // Define a cor do texto para vermelho
-                    Console.WriteLine("Entrada inválida. Por favor, digite um número minimo menor que maximo.");
-                    Console.ResetColor(); // Restaura a cor padrão do console
-                }
-                Console.ResetColor(); // Restaura a cor padrão do console
+                    Console.Write("\nDigite o número minValue (será usado no Random): ");
+                    if (!int.TryParse(Console.ReadLine(), out int minValueTemp))
+                        {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Entrada inválida. Por favor, digite um número inteiro.");
+                        Console.ResetColor();
+                        continue;
+                        }
 
-                if (int.TryParse(entrada, out int tamVetorInt))
-                    {
-                    random = new System.Random();
-                    vetorRandomizado = new int[tamVetorInt];//criando as instancia
-                                                            //passando o atributo com tamanho vetor
-                    return;
+                    Console.Write("\nDigite o número maxValue (será usado no Random): ");
+                    if (!int.TryParse(Console.ReadLine(), out int maxValueTemp))
+                        {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Entrada inválida. Por favor, digite um número inteiro.");
+                        Console.ResetColor();
+                        continue;
+                        }
+
+                    if (minValueTemp > maxValueTemp)
+                        {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Entrada inválida. minValue deve ser menor que maxValue.");
+                        Console.ResetColor();
+                        continue;
+                        }
+
+                    // Agora pode atribuir os valores às propriedades
+                    MinValue = minValueTemp;
+                    MaxValue = maxValueTemp;
+
+                    break;
                     }
-                else
-                    {
-                    Console.ForegroundColor = ConsoleColor.Red; // Define a cor do texto para vermelho
-                    Console.WriteLine("Entrada inválida. Por favor, digite um número inteiro.");
-                    Console.ResetColor(); // Restaura a cor padrão do console
-                    }
+
+                Console.ResetColor();
+                return;
                 }
             }
-
         public void Randomize() 
         { 
             if(vetorRandomizado == null){
@@ -71,7 +89,7 @@ namespace MetodosOrdenacao.Randomizador
                 return;
             }
                 for (int i = 0; i < vetorRandomizado.Length; i++){ 
-                    vetorRandomizado[i] = random.Next(minValue,maxValue);//ajustar para quantidade numeros que usuario pedir
+                    vetorRandomizado[i] = random.Next(MinValue,MaxValue);//ajustar para quantidade numeros que usuario pedir
                 }
         }
 

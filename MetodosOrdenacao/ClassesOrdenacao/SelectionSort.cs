@@ -4,40 +4,41 @@ namespace MetodosOrdenacao.ClassesOrdenacao
     {
     public class SelectionSort
         {
-        public int[] VetorCopia { get; set; }
+      
+        public int[] VetorOrdenadoSelectionSort { get; set; }
 
         public SelectionSort() { }
-
+        
         public SelectionSort(int[] vetorCopia)
             {
-            VetorCopia = vetorCopia;
+            VetorOrdenadoSelectionSort = vetorCopia;
             }
-
         public int[] ObterVetorOrdenadoSelectionSort()
             {
-            return VetorCopia;
+            return VetorOrdenadoSelectionSort;
             }
 
+        
         public void Ordenar()
             {
            // Console.WriteLine("Executando Selection Sort...");
 
             // Implementação do algoritmo Selection Sort
-            int n = VetorCopia.Length;
+            int n = VetorOrdenadoSelectionSort.Length;
             for (int i = 0; i < n - 1; i++)
                 {
                 int menorIndice = i;
                 for (int j = i + 1; j < n; j++)
                     {
-                    if (VetorCopia[j] < VetorCopia[menorIndice])
+                    if (VetorOrdenadoSelectionSort[j] < VetorOrdenadoSelectionSort[menorIndice])
                         {
                         menorIndice = j; // Encontra o menor elemento
                         }
                     }
                 // Trocar elementos
-                int temp = VetorCopia[menorIndice];
-                VetorCopia[menorIndice] = VetorCopia[i];
-                VetorCopia[i] = temp;
+                int temp = VetorOrdenadoSelectionSort[menorIndice];
+                VetorOrdenadoSelectionSort[menorIndice] = VetorOrdenadoSelectionSort[i];
+                VetorOrdenadoSelectionSort[i] = temp;
                 }
             }
         }

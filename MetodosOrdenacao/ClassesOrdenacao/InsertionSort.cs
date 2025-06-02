@@ -5,37 +5,37 @@ namespace MetodosOrdenacao.ClassesOrdenacao
     {
     public class InsertionSort
         {
-        public int[] VetorCopia { get; set; }
+        //public int[] VetorCopia { get; set; }
+        public int[] VetorOrdenadoInsertSort { get; set; }
 
         public InsertionSort() { }
 
         public InsertionSort(int[] vetorCopia)
             {
-            VetorCopia = vetorCopia;
+            VetorOrdenadoInsertSort = vetorCopia;
             }
 
         public int[] ObterVetorOrdenadoInsertionSort()
             {
-            return VetorCopia;
+            return VetorOrdenadoInsertSort;
             }
 
         public void Ordenar()
             {
-            //Console.WriteLine("Executando InsertionSort...");
             // Implementação do algoritmo InsertionSort
-            int n = VetorCopia.Length;
+            int n = VetorOrdenadoInsertSort.Length;
                 for (int i = 1; i < n; i++)
                     {
-                    int key = VetorCopia[i];
+                    int key = VetorOrdenadoInsertSort[i];
                     int j = i - 1;
 
                     // Move os elementos maiores para frente
-                    while (j >= 0 && VetorCopia[j] > key)
+                    while (j >= 0 && VetorOrdenadoInsertSort[j] > key)
                         {
-                    VetorCopia[j + 1] = VetorCopia[j];
+                    VetorOrdenadoInsertSort[j + 1] = VetorOrdenadoInsertSort[j];
                         j--;
                     }
-                VetorCopia[j + 1] = key;
+                VetorOrdenadoInsertSort[j + 1] = key;
                 }
         }
     }
