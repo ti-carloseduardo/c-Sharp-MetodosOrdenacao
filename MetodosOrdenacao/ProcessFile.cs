@@ -108,13 +108,18 @@ namespace MetodosOrdenacao
                             break;
 
                             case TipoOrdenacaoEnum.AllSorts://todos os algoritmos de ordenação
+
+                            Console.WriteLine("=== Informações do Vetor ===");
+                            Console.WriteLine($"Tamanho do Vetor: {randomizar.TamanhoVetor}");
+                            Console.WriteLine($"Limites: min = {randomizar.MinValue}, max = {randomizar.MaxValue}");
+                            Console.WriteLine("=== Informações do Tempo Excução ===");
+
                             stopwatchGeral.Start();
                             BubbleSort bubbleSort = new BubbleSort(vetorCopiaVetorRandomizado);
                             bubbleSort.Ordenar();
                             stopwatch.Stop(); // Para o cronômetro após a ordenação
                             double tempoExecucaoBubbleSort = stopwatch.Elapsed.TotalSeconds; // Captura o tempo de execução
-                            Console.WriteLine("Bubble Sort concluído.");
-                            Console.WriteLine($"Tempo de execução Bubble Sort: {tempoExecucaoBubbleSort} segundos\n");
+                            Console.WriteLine($"Bubble Sort: {tempoExecucaoBubbleSort} segundos");
                             stopwatch.Restart(); // Reinicia o cronômetro para o próximo algoritmo                        
 
                                                         
@@ -123,8 +128,7 @@ namespace MetodosOrdenacao
                             selectionSort.Ordenar();
                             stopwatch.Stop(); // Para o cronômetro após a ordenação
                             double tempoExecucaoSelectionSort = stopwatch.Elapsed.TotalSeconds; // Captura o tempo de execução
-                            Console.WriteLine("Selection Sort concluído.");
-                            Console.WriteLine($"Tempo de execução Selection Sort: {tempoExecucaoSelectionSort} segundos\n");
+                            Console.WriteLine($"Selection Sort: {tempoExecucaoSelectionSort} segundos");
                             stopwatch.Restart(); // Reinicia o cronômetro para o próximo algoritmo
 
                             
@@ -133,8 +137,7 @@ namespace MetodosOrdenacao
                             insertionSort.Ordenar();
                             stopwatch.Stop(); // Para o cronômetro após a ordenação
                             double tempoExecucaoInsertionSort = stopwatch.Elapsed.TotalSeconds; // Captura o tempo de execução
-                            Console.WriteLine("Insertion Sort concluído.");
-                            Console.WriteLine($"Tempo de execução Insertion Sort: {tempoExecucaoInsertionSort} segundos\n");
+                            Console.WriteLine($"Insertion Sort: {tempoExecucaoInsertionSort} segundos");
                             stopwatch.Restart(); // Reinicia o cronômetro para o próximo algoritmo
                             
                             
@@ -143,8 +146,7 @@ namespace MetodosOrdenacao
                             mergeSort.Ordenar();
                             stopwatch.Stop();
                             double tempoExecucaoMergeSort = stopwatch.Elapsed.TotalSeconds; // Captura o tempo de execução
-                            Console.WriteLine("Merge Sort Concluido");
-                            Console.WriteLine($"Tempo de execução Merge Sort: {tempoExecucaoMergeSort} segundos\n");
+                            Console.WriteLine($"Merge Sort: {tempoExecucaoMergeSort} segundos");
                             stopwatch.Restart(); // Reinicia o cronômetro para o próximo algoritmo
 
                             
@@ -153,8 +155,7 @@ namespace MetodosOrdenacao
                             quickSort.Ordenar();
                             stopwatch.Stop(); // Para o cronômetro após a ordenação
                             double tempoExecucaoQuickSort = stopwatch.Elapsed.TotalSeconds; // Captura o tempo de execução
-                            Console.WriteLine("Quick Sort Concluido");
-                            Console.WriteLine($"Tempo de execução Quick Sort: {tempoExecucaoQuickSort} segundos\n");
+                            Console.WriteLine($"Quick Sort: {tempoExecucaoQuickSort} segundos");
                             stopwatch.Restart(); // Reinicia o cronômetro para o próximo algoritmo
 
                         
@@ -162,8 +163,7 @@ namespace MetodosOrdenacao
                             double tempoExecucaoGeral = stopwatchGeral.Elapsed.TotalSeconds;
                             Console.WriteLine($"\nTEMPO DE EXECUCAO TOTAL: {tempoExecucaoGeral} segundos\n");
 
-                            //GRAVAR em arquivo os vetorres ordenados comforme o metodo de ordenação
-                            //(tempo execução Ordenacao) e gravado no fim do arquivo.
+
 
                             Console.WriteLine("\nCaminhos para os vetores ordenados gravados em arquivos...");
                             
@@ -173,11 +173,22 @@ namespace MetodosOrdenacao
                             int[] vetorOrdenadoMergeSort = mergeSort.ObterVetorOrdenadoMergeSort();
                             int[] vetorOrdenadoQuickSort = quickSort.ObterVetorOrdenadoQuickSort();
 
-                            gravaArquivo.GravarVetorOrdenado(nameof(TipoOrdenacaoEnum.BubbleSort), vetorOrdenadoBubbleSort, tempoExecucaoBubbleSort, randomizar.MinValue, randomizar.MaxValue);
-                            gravaArquivo.GravarVetorOrdenado(nameof(TipoOrdenacaoEnum.SelectionSort), vetorOrdenadoSelectionSort, tempoExecucaoSelectionSort, randomizar.MinValue, randomizar.MaxValue);
-                            gravaArquivo.GravarVetorOrdenado(nameof(TipoOrdenacaoEnum.InsertionSort), vetorOrdenadoInsertionSort, tempoExecucaoInsertionSort, randomizar.MinValue, randomizar.MaxValue);
-                            gravaArquivo.GravarVetorOrdenado(nameof(TipoOrdenacaoEnum.MergeSort), vetorOrdenadoMergeSort, tempoExecucaoMergeSort, randomizar.MinValue, randomizar.MaxValue);
-                            gravaArquivo.GravarVetorOrdenado(nameof(TipoOrdenacaoEnum.QuickSort), vetorOrdenadoQuickSort, tempoExecucaoQuickSort, randomizar.MinValue, randomizar.MaxValue);
+                            // Cria um dicionário para armazenar os vetores ordenados
+                            Dictionary<string, int[]> vetoresOrdenados = new()
+                            {
+                                { nameof(TipoOrdenacaoEnum.BubbleSort), bubbleSort.ObterVetorOrdenadoBubbleSort() },
+                                { nameof(TipoOrdenacaoEnum.SelectionSort), selectionSort.ObterVetorOrdenadoSelectionSort() },
+                                { nameof(TipoOrdenacaoEnum.InsertionSort), insertionSort.ObterVetorOrdenadoInsertionSort() },
+                                { nameof(TipoOrdenacaoEnum.MergeSort), mergeSort.ObterVetorOrdenadoMergeSort() },
+                                { nameof(TipoOrdenacaoEnum.QuickSort), quickSort.ObterVetorOrdenadoQuickSort() }
+                            };
+                            //GRAVAR em arquivo os vetorres ordenados comforme o metodo de ordenação
+                            //(tempo execução Ordenacao) e gravado no fim do arquivo.
+
+                            foreach (var vetorOrdenado in vetoresOrdenados)
+                                {
+                                gravaArquivo.GravarVetorOrdenado(vetorOrdenado.Key, vetorOrdenado.Value, stopwatch.Elapsed.TotalSeconds, randomizar.MinValue, randomizar.MaxValue);
+                                }
 
                             break;
                             
