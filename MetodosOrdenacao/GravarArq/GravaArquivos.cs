@@ -5,13 +5,14 @@ namespace MetodosOrdenacao.Arquivos
     {
     class GravaArquivos
         {
+        //construtores privados restricao na mudança externa dos arquivos. 
         public string TargetPath { get; private set; } =
         @"C:\Users\vboxuser\Documents\projetos\MetodosOrdenacao\MetodosOrdenacao\DadosOrdenacao"; 
         // Caminho padrão
                                                            
-        public string NomeArquivo { get; set; }
-        public int[] VetorRandomizado { get; set; }
-        public int[] VetorOrdenado { get; set; }
+        public string NomeArquivo { get; private set; }
+        public int[] VetorRandomizado { get; private set; }
+        public int[] VetorOrdenado { get; private set; }
         
        
 

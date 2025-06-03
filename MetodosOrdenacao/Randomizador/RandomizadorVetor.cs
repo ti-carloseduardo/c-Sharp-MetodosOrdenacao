@@ -12,6 +12,7 @@ namespace MetodosOrdenacao.Randomizador
         public int MinValue { get; private set; }
         public int MaxValue { get; private set; }
 
+        public int TamanhoVetor => vetorRandomizado?.Length ?? 0; // Propriedade para obter o tamanho do vetor
         public RandomizadorVetor(int[] vetorRandomizado, Random random, int minValue, int maxValue)
             {
             this.vetorRandomizado = vetorRandomizado;
@@ -42,6 +43,7 @@ namespace MetodosOrdenacao.Randomizador
 
                 random = new System.Random();
                 vetorRandomizado = new int[tamVetorInt];
+
 
                 while (true)
                     {
